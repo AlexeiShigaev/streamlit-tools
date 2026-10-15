@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import logging
 from io import BytesIO
+from pathlib import Path
 
 
 logging.basicConfig(level=logging.INFO)
@@ -29,6 +30,9 @@ st.markdown("""
 
 ⚠️ Если во втором файле есть однофамильцы (одинаковое ФИО) — берётся **первое** вхождение. Проверяйте такие строки вручную. Ненайденная почта отмечена `-`.
 """)
+
+with st.expander("📖 Подробная инструкция"):
+    st.markdown(Path("pages/compare2xls.md").read_text(encoding="utf-8"))
 
 # --- Загрузка файлов ---
 file1 = st.file_uploader("Укажите файл списка сотрудников подразделения", type=["xlsx", "xls"], key="cmp_file1")

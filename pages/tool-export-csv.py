@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from pathlib import Path
 
 st.title("📄 Excel → CSV")
 
@@ -16,6 +17,9 @@ st.markdown("""
 
 ⚠️ Столбцы удаляются **вручную** — утилита не знает, какие из них мусорные. Порядок обхода листов не важен.
 """)
+
+with st.expander("📖 Подробная инструкция"):
+    st.markdown(Path("pages/tool-export-csv.md").read_text(encoding="utf-8"))
 
 uploaded = st.file_uploader("Загрузите журнал сертификатов смены", type=["xlsx", "xls"])
 
