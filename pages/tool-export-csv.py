@@ -69,6 +69,6 @@ if uploaded is not None:
         st.session_state.df = df
         st.rerun()
 
-    csv = st.session_state.df.to_csv(index=False)
+    csv = st.session_state.df.to_csv(index=False, encoding="utf-8-sig")
     st.download_button("Скачать CSV", csv, file_name="result.csv")
             
