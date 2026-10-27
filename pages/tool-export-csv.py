@@ -69,6 +69,9 @@ if uploaded is not None:
         st.session_state.df = df
         st.rerun()
 
-    csv = st.session_state.df.to_csv(index=False)
-    st.download_button("Скачать CSV", csv, file_name="result.csv")
+    # CP1251 (ANSI на русской Windows) — осознанный выбор.
+    # Файл идёт в Photoshop, который ждёт ANSI и не понимает UTF-8.
+    # На UTF-8 Excel на русской Windows тоже показывает кракозябры.
+    csv_bytes = st.session_state.df.to_csv(index=False, encoding="cp1251").encode("cp1251")
+    st.download_button("Скачать CSV", csv_bytes, file_name="result.csv")
             
